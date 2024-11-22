@@ -1,0 +1,23 @@
+//User Prefernce Module
+
+
+import { IsEmail, IsEnum, IsString, IsBoolean } from 'class-validator';
+
+export class CreateUserPreferenceDto {
+  @IsString() userId: string;
+  @IsEmail() email: string;
+
+  preferences: {
+    @IsBoolean() marketing: boolean;
+    @IsBoolean() newsletter: boolean;
+    @IsBoolean() updates: boolean;
+    @IsEnum(['daily', 'weekly', 'monthly', 'never']) frequency: string;
+    channels: {
+      @IsBoolean() email: boolean;
+      @IsBoolean() sms: boolean;
+      @IsBoolean() push: boolean;
+    };
+  };
+
+  @IsString() timezone: string;
+}
